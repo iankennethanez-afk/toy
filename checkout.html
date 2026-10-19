@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportZone - Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            Sport<span>Zone</span>
+        </div>
+
+        <div class="right-nav">
+
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <a href="cart.html" class="cart-link">
+                🛒 Cart
+                <span id="cartCount">0</span>
+            </a>
+
+        </div>
+
+    </nav>
+</header>
+
+
+<section class="product-hero">
+
+    <p>SPORTZONE STORE</p>
+
+    <h1>Our <span>Products</span></h1>
+
+    <p class="description">
+        Quality sports equipment, fitness gear,
+        shoes, gadgets and electronics.
+    </p>
+
+</section>
+
+
+<section class="products-section">
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="search"
+            placeholder="🔎 Search products..."
+            onkeyup="searchProducts()"
+        >
+    </div>
+
+
+    <div class="categories">
+
+        <button onclick="filterProducts('all')">All</button>
+
+        <button onclick="filterProducts('sports')">
+            🏀 Sports
+        </button>
+
+        <button onclick="filterProducts('fitness')">
+            🏋️ Fitness
+        </button>
+
+        <button onclick="filterProducts('shoes')">
+            👟 Shoes
+        </button>
+
+        <button onclick="filterProducts('gadgets')">
+            📱 Gadgets
+        </button>
+
+        <button onclick="filterProducts('computer')">
+            💻 Computer
+        </button>
+
+        <button onclick="filterProducts('audio')">
+            🎧 Audio
+        </button>
+
+        <button onclick="filterProducts('smart')">
+            ⌚ Smart
+        </button>
+
+    </div>
+
+
+    <div class="product-grid" id="productGrid"></div>
+
+</section>
+
+
+<footer>
+    © 2026 SportZone. All Rights Reserved.
+</footer>
+
+
+<script>
+
+const products = [
+
+/* ================= SPORTS ================= */
+
+{
+    name:"Basketball",
+    category:"sports",
+    price:850,
+    image:"https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Football",
+    category:"sports",
+    price:950,
+    image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Tennis Racket",
+    category:"sports",
+    price:1500,
+    image:"https://images.unsplash.com/photo-1617083934555-5c8e7b3b6f6a?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Volleyball",
+    category:"sports",
+    price:900,
+    image:"https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Boxing Gloves",
+    category:"sports",
+    price:1200,
+    image:"https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Baseball Glove",
+    category:"sports",
+    price:1350,
+    image:"https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=600&q=80"
+},
+
+
+/* ================= FITNESS ================= */
+
+{
+    name:"Dumbbells",
+    category:"fitness",
+    price:1800,
+    image:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Yoga Mat",
+    category:"fitness",
+    price:650,
+    image:"https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Kettlebell",
+    category:"fitness",
+    price:1500,
+    image:"https://images.unsplash.com/photo-1598289431512-b97b0917affc?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Resistance Bands",
+    category:"fitness",
+    price:550,
+    image:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Exercise Ball",
+    category:"fitness",
+    price:800,
+    image:"https://images.unsplash.com/photo-1592432678016-e910b452f9a2?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Jump Rope",
+    category:"fitness",
+    price:350,
+    image:"https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=600&q=80"
+},
+
+
+/* ================= SHOES ================= */
+
+{
+    name:"Running Shoes",
+    category:"shoes",
+    price:2500,
+    image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Basketball Shoes",
+    category:"shoes",
+    price:3200,
+    image:"https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Training Shoes",
+    category:"shoes",
+    price:2300,
+    image:"https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Sports Sneakers",
+    category:"shoes",
+    price:2000,
+    image:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Walking Shoes",
+    category:"shoes",
+    price:1900,
+    image:"https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Football Shoes",
+    category:"shoes",
+    price:2700,
+    image:"https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=600&q=80"
+},
+
+
+/* ================= GADGETS ================= */
+
+{
+    name:"Smartphone",
+    category:"gadgets",
+    price:8999,
+    image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Tablet",
+    category:"gadgets",
+    price:7500,
+    image:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Power Bank",
+    category:"gadgets",
+    price:1200,
+    image:"https://images.unsplash.com/photo-1609592424730-1b7c5d3fefb0?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Digital Camera",
+    category:"gadgets",
+    price:18000,
+    image:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Action Camera",
+    category:"gadgets",
+    price:9500,
+    image:"https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"VR Headset",
+    category:"gadgets",
+    price:12000,
+    image:"https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=600&q=80"
+},
+
+
+/* ================= COMPUTER ================= */
+
+{
+    name:"Laptop",
+    category:"computer",
+    price:35000,
+    image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Gaming Mouse",
+    category:"computer",
+    price:1250,
+    image:"https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Gaming Keyboard",
+    category:"computer",
+    price:2500,
+    image:"https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Computer Monitor",
+    category:"computer",
+    price:8500,
+    image:"https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Gaming Headset",
+    category:"computer",
+    price:2200,
+    image:"https://images.unsplash.com/photo-1599669454699-248893623440?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"USB Flash Drive",
+    category:"computer",
+    price:650,
+    image:"https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=600&q=80"
+},
+
+
+/* ================= AUDIO ================= */
+
+{
+    name:"Wireless Earbuds",
+    category:"audio",
+    price:1999,
+    image:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Bluetooth Speaker",
+    category:"audio",
+    price:2500,
+    image:"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Headphones",
+    category:"audio",
+    price:2999,
+    image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Studio Microphone",
+    category:"audio",
+    price:4500,
+    image:"https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Sound Bar",
+    category:"audio",
+    price:5500,
+    image:"https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Portable Speaker",
+    category:"audio",
+    price:1800,
+    image:"https://images.unsplash.com/photo-1589256469067-ea99122bbdc4?auto=format&fit=crop&w=600&q=80"
+},
+
+
+/* ================= SMART ================= */
+
+{
+    name:"Smart Watch",
+    category:"smart",
+    price:2999,
+    image:"https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Fitness Tracker",
+    category:"smart",
+    price:1999,
+    image:"https://images.unsplash.com/photo-1576243345690-4e4b79b63288?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Smart Band",
+    category:"smart",
+    price:1599,
+    image:"https://images.unsplash.com/photo-1557935728-e6d1eaabe558?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Smart Glasses",
+    category:"smart",
+    price:4999,
+    image:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Smart Ring",
+    category:"smart",
+    price:3999,
+    image:"https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80"
+},
+
+{
+    name:"Smart Scale",
+    category:"smart",
+    price:2499,
+    image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=600&q=80"
+}
+
+];
+
+
+function displayProducts(list) {
+
+    const grid = document.getElementById("productGrid");
+
+    grid.innerHTML = "";
+
+    list.forEach(product => {
+
+        grid.innerHTML += `
+
+        <div class="product-card">
+
+            <div class="product-image real-product">
+
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                >
+
+            </div>
+
+            <span class="category">
+                ${product.category.toUpperCase()}
+            </span>
+
+            <h2>
+                ${product.name}
+            </h2>
+
+            <p class="price">
+                ₱${product.price.toLocaleString()}
+            </p>
+
+            <div class="product-buttons">
+
+                <button
+                    onclick="addCart('${product.name}')"
+                >
+                    🛒 ADD TO CART
+                </button>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyNow('${product.name}')"
+                >
+                    BUY NOW
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+function addCart(productName) {
+
+    let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+    const product =
+        products.find(p => p.name === productName);
+
+    const existing =
+        cart.find(item => item.name === productName);
+
+    if(existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        cart.push({
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+        });
+
+    }
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+
+    window.location.href = "cart.html";
+
+}
+
+
+function buyNow(productName) {
+
+    const product =
+        products.find(p => p.name === productName);
+
+    localStorage.setItem(
+        "buyNow",
+        JSON.stringify(product)
+    );
+
+    window.location.href = "checkout.html";
+
+}
+
+
+function updateCartCount() {
+
+    let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.quantity;
+    });
+
+    document.getElementById("cartCount").innerText = total;
+
+}
+
+
+function filterProducts(category) {
+
+    if(category === "all") {
+
+        displayProducts(products);
+
+    } else {
+
+        const filtered =
+            products.filter(
+                product => product.category === category
+            );
+
+        displayProducts(filtered);
+
+    }
+
+}
+
+
+function searchProducts() {
+
+    const search =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    const filtered =
+        products.filter(product =>
+            product.name
+            .toLowerCase()
+            .includes(search)
+        );
+
+    displayProducts(filtered);
+
+}
+
+
+displayProducts(products);
+updateCartCount();
+
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+
+<title>SportZone - Cart</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+Sport<span>Zone</span>
+</div>
+
+<div class="right-nav">
+
+<ul class="nav-links">
+
+<li>
+<a href="home.html">Home</a>
+</li>
+
+<li>
+<a href="about.html">About</a>
+</li>
+
+<li>
+<a href="products.html">Products</a>
+</li>
+
+<li>
+<a href="contact.html">Contact</a>
+</li>
+
+</ul>
+
+<a href="cart.html" class="cart-link active">
+🛒 Cart
+<span id="cartCount">0</span>
+</a>
+
+</div>
+
+</nav>
+
+</header>
+
+
+<section class="cart-page">
+
+<h1>
+Shopping <span>Cart</span>
+</h1>
+
+
+<div id="cartItems"></div>
+
+
+<div class="cart-total">
+
+<h2>
+Total:
+₱<span id="cartTotal">0</span>
+</h2>
+
+<button
+class="checkout-btn"
+onclick="checkout()"
+
+CHECKOUT
+</button>
+
+</div>
+
+</section>
+
+
+<script>
+
+function displayCart() {
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+const container =
+document.getElementById("cartItems");
+
+container.innerHTML = "";
+
+let total = 0;
+
+if(cart.length === 0) {
+
+container.innerHTML = `
+
+<div class="empty-cart">
+
+<h2>Your cart is empty 🛒</h2>
+
+<a href="products.html">
+Continue Shopping
+</a>
+
+</div>
+
+`;
+
+document.getElementById("cartTotal").innerText = "0";
+
+return;
+
+}
+
+
+cart.forEach((item,index) => {
+
+let subtotal =
+item.price * item.quantity;
+
+total += subtotal;
+
+container.innerHTML += `
+
+<div class="cart-item">
+
+<img
+src="${item.image}"
+alt="${item.name}"
+
+
+<div class="cart-info">
+
+<h2>
+${item.name}
+</h2>
+
+<p>
+₱${item.price.toLocaleString()}
+</p>
+
+<div class="quantity">
+
+<button
+onclick="changeQuantity(${index}, -1)"
+
+−
+</button>
+
+<span>
+${item.quantity}
+</span>
+
+<button
+onclick="changeQuantity(${index}, 1)"
+
++
+</button>
+
+</div>
+
+<p>
+Subtotal:
+<strong>
+₱${subtotal.toLocaleString()}
+</strong>
+</p>
+
+<button
+class="remove-btn"
+onclick="removeItem(${index})"
+
+REMOVE
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("cartTotal").innerText =
+total.toLocaleString();
+
+updateCartCount();
+
+}
+
+
+function changeQuantity(index,amount) {
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+cart[index].quantity += amount;
+
+if(cart[index].quantity <= 0) {
+
+cart.splice(index,1);
+
+}
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+displayCart();
+
+}
+
+
+function removeItem(index) {
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.splice(index,1);
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+displayCart();
+
+}
+
+
+function checkout() {
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+if(cart.length === 0) {
+
+alert("Your cart is empty!");
+
+return;
+
+}
+
+localStorage.removeItem("buyNow");
+
+window.location.href =
+"checkout.html";
+
+}
+
+
+function updateCartCount() {
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+let count = 0;
+
+cart.forEach(item => {
+
+count += item.quantity;
+
+});
+
+document.getElementById("cartCount").innerText =
+count;
+
+}
+
+
+displayCart();
+
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+
+<title>SportZone - Checkout</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+Sport<span>Zone</span>
+</div>
+
+<div class="right-nav">
+
+<ul class="nav-links">
+
+<li>
+<a href="Home.html">Home</a>
+</li>
+
+<li>
+<a href="About.html">About</a>
+</li>
+
+<li>
+<a href="Product.html">Products</a>
+</li>
+
+<li>
+<a href="Contact.html">Contact</a>
+</li>
+
+</ul>
+
+<a href="cart.html" class="cart-link">
+🛒 Cart
+</a>
+
+</div>
+
+</nav>
+
+</header>
+
+
+<section class="checkout-page">
+
+<h1>
+Checkout
+</h1>
+
+
+<div class="checkout-container">
+
+
+<div class="order-summary">
+
+<h2>
+Order Summary
+</h2>
+
+<div id="orderItems"></div>
+
+<h2>
+Total:
+₱<span id="orderTotal">0</span>
+</h2>
+
+</div>
+
+
+<div class="checkout-form">
+
+<h2>
+Customer Information
+</h2>
+
+<form onsubmit="placeOrder(event)">
+
+<input
+type="text"
+placeholder="Full Name"
+required
+
+
+<input
+type="email"
+placeholder="Email Address"
+required
+
+
+<input
+type="text"
+placeholder="Phone Number"
+required
+
+
+<textarea
+placeholder="Complete Address"
+required
+</textarea>
+
+
+
+<select required>
+
+<option value="">
+Select Payment Method
+</option>
+
+<option>
+Cash on Delivery
+</option>
+
+<option>
+GCash
+</option>
+
+<option>
+Bank Transfer
+</option>
+
+</select>
+
+
+<button type="submit">
+PLACE ORDER
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<script>
+
+function loadCheckout() {
+
+let buyNow =
+JSON.parse(localStorage.getItem("buyNow"));
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+let items = [];
+
+if(buyNow) {
+
+items = [
+
+{
+name:buyNow.name,
+price:buyNow.price,
+quantity:1,
+image:buyNow.image
+}
+
+];
+
+} else {
+
+items = cart;
+
+}
+
+
+const container =
+document.getElementById("orderItems");
+
+container.innerHTML = "";
+
+let total = 0;
+
+
+if(items.length === 0) {
+
+container.innerHTML =
+"<p>No products selected.</p>";
+
+return;
+
+}
+
+
+items.forEach(item => {
+
+let subtotal =
+item.price * item.quantity;
+
+total += subtotal;
+
+container.innerHTML += `
+
+<div class="order-item">
+
+<img
+src="${item.image}"
+alt="${item.name}"
+
+
+<div>
+
+<h3>
+${item.name}
+</h3>
+
+<p>
+Quantity: ${item.quantity}
+</p>
+
+<p>
+₱${subtotal.toLocaleString()}
+</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("orderTotal").innerText =
+total.toLocaleString();
+
+}
+
+
+function placeOrder(event) {
+
+event.preventDefault();
+
+alert(
+"Thank you for your order! Your order has been successfully placed."
+);
+
+localStorage.removeItem("cart");
+
+localStorage.removeItem("buyNow");
+
+window.location.href =
+"home.html";
+
+}
+
+
+loadCheckout();
+
+</script>
+
+</body>
+</html>

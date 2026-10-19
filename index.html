@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportZone Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-body">
+
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+
+    <div class="login-container">
+
+        <h1>SportZone</h1>
+
+        <p class="subtitle">
+            welcome to my shop
+        </p>
+
+        <form onsubmit="login(event)">
+
+            <div class="input-box">
+                <input type="text" id="username" required>
+                <label>Username</label>
+            </div>
+
+            <div class="input-box">
+                <input type="password" id="password" required>
+                <label>Password</label>
+            </div>
+
+            <button type="submit" class="login-btn">
+                LOGIN
+            </button>
+
+        </form>
+
+        <p id="message"></p>
+
+    </div>
+
+<script>
+function login(event) {
+
+    event.preventDefault();
+
+    let username =
+        document.getElementById("username").value;
+
+    let password =
+        document.getElementById("password").value;
+
+    if (username === "Añez" && password === "12345") {
+
+        document.getElementById("message").innerHTML =
+            "Login successful!";
+
+        setTimeout(function() {
+            window.location.href = "Home.html";
+        }, 800);
+
+    } else {
+
+        document.getElementById("message").innerHTML =
+            "Invalid username or password.";
+
+    }
+}
+  function togglePassword() {
+    let password = document.getElementById("password");
+    let checkbox = document.getElementById("showPassword");
+
+    if (checkbox.checked) {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+  }
+  
+</script>
+
+</body>
+</html>
